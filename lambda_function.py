@@ -111,7 +111,7 @@ def whose_out_tommorow_post():
 
 
 def post_to_slack(report_content):
-    testing=True
+    testing=False
     url = ("https://hooks.slack.com/services/" + "YourSlackHookURLHere")
     # Send to private channel while testing
     if(testing):
