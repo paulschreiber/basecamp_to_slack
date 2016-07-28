@@ -23,7 +23,7 @@ def whose_out():
     
     events = json.loads((data.decode("utf-8")))
     for event in events:
-        if event["starts_at"] <= datetime.datetime.now().strftime("%Y-%m-%d") <= event["ends_at"]:
+        if event["starts_at"][0:10] <= datetime.datetime.now().strftime("%Y-%m-%d") <= event["ends_at"][0:10]:
             message += "\n==============\n*Person:* %s\n*Reason:* %s\n*Description*: %s\n*URL:* %s\n" % (event["creator"]["name"], event["summary"], event["description"], event["app_url"])
         
     return message
@@ -76,7 +76,7 @@ def whose_out_tommorow():
     
     events = json.loads((data.decode("utf-8")))
     for event in events:
-        if event["starts_at"] <= (datetime.datetime.now() + datetime.timedelta(days=1)).strftime("%Y-%m-%d") <= event["ends_at"]:
+        if event["starts_at"][0:10] <= (datetime.datetime.now() + datetime.timedelta(days=1)).strftime("%Y-%m-%d") <= event["ends_at"][0:10]:
             message += "\n==============\n*Person:* %s\n*Reason:* %s\n*Description*: %s\n*URL:* %s\n" % (event["creator"]["name"], event["summary"], event["description"], event["app_url"])
         
     return message
