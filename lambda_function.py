@@ -52,7 +52,9 @@ def whose_out_post():
     month = datetime.datetime.now().strftime("%m")
     for event in events:
         if "out" in event["target"].lower() and (month + "/" + day in event["target"] or month.lstrip("0") + "/" + day.lstrip("0") in event["target"]):
-            message += "\n==============\n*Person:* %s\n*Reason:* %s\n*Description*: %s\n*URL:* %s\n" % (event["creator"]["name"], event["target"], event["excerpt"], event["html_url"])
+            if "/" + year in event["target"]:
+                if (month + "/" + year not in event["target"] and day != month) and (month.lstrip("0") + "/" + year not in event["target"] and day.lstrip("0") != month.lstrip("0")):
+                    message += "\n==============\n*Person:* %s\n*Reason:* %s\n*Description*: %s\n*URL:* %s\n" % (event["creator"]["name"], event["target"], event["excerpt"], event["html_url"])
         
     return message
 
@@ -105,7 +107,9 @@ def whose_out_tommorow_post():
     month = (datetime.datetime.now() + datetime.timedelta(days=1)).strftime("%m")
     for event in events:
         if "out" in event["target"].lower() and (month + "/" + day in event["target"] or month.lstrip("0") + "/" + day.lstrip("0") in event["target"]):
-            message += "\n==============\n*Person:* %s\n*Reason:* %s\n*Description*: %s\n*URL:* %s\n" % (event["creator"]["name"], event["target"], event["excerpt"], event["html_url"])
+            if "/" + year in event["target"]:
+                if (month + "/" + year not in event["target"] and day != month) and (month.lstrip("0") + "/" + year not in event["target"] and day.lstrip("0") != month.lstrip("0")):
+                    message += "\n==============\n*Person:* %s\n*Reason:* %s\n*Description*: %s\n*URL:* %s\n" % (event["creator"]["name"], event["target"], event["excerpt"], event["html_url"])
         
     return message
 
